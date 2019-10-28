@@ -1,0 +1,54 @@
+{
+    "_id" : ObjectId("5ce312a72b9465b3a44aaa57"),
+    "key" : "unit_tests",
+    "name" : "Unit Tests",
+    "description" : "The following metrics are validated from SonarQube data collected in your CI pipeline when running Unit Tests during the Test activity.",
+    "order" : "1",
+    "config" : [ 
+        {
+            "key" : "metric",
+            "label" : "Metric",
+            "type" : "select",
+            "defaultValue" : "",
+            "required" : false,
+            "description" : "",
+            "options" : [ 
+                "tests", 
+                "test_errors", 
+                "test_failures", 
+                "skipped_tests", 
+                "test_success_percentage", 
+                "test_execution_time", 
+                "coverage", 
+                "lines_to_cover", 
+                "uncovered_lines", 
+                "line_coverage"
+            ]
+        }, 
+        {
+            "key" : "operator",
+            "label" : "Operator",
+            "type" : "select",
+            "defaultValue" : "",
+            "required" : false,
+            "description" : "",
+            "options" : [ 
+                "equal", 
+                "not equal", 
+                "less than", 
+                "less than or equal", 
+                "greater than", 
+                "greater than or equal"
+            ]
+        }, 
+        {
+            "key" : "value",
+            "label" : "Value",
+            "type" : "text",
+            "defaultValue" : "",
+            "required" : false,
+            "description" : "",
+            "options" : null
+        }
+    ]
+}
