@@ -40,7 +40,7 @@ public class BosunDatabaseChangeLog {
 	public void loadPolicies(MongoDatabase db) throws IOException {
 
 		BasicDBObject document = new BasicDBObject();
-		final MongoCollection<Document> policyCollection = db.getCollection("bosun_policies");
+		final MongoCollection<Document> policyCollection = db.getCollection("bosun_definitions");
 		policyCollection.deleteMany(document);
 		final List<String> policyFiles = fileloadingService.loadFiles("bosun/002/bosun_policies/*.json");
 		for (final String fileContents : policyFiles) {
