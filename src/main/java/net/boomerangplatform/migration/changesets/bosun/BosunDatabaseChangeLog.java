@@ -33,16 +33,16 @@ public class BosunDatabaseChangeLog {
 		db.createCollection("bosun_teams");
 		db.createCollection("bosun_policies");
 		db.createCollection("bosun_activities");
-		db.createCollection("bosun_definitions");
+		db.createCollection("bosun_templates");
 	}
 
 	@ChangeSet(order = "002", id = "002", author = "Marcus Roy")
 	public void loadPolicies(MongoDatabase db) throws IOException {
 
 		BasicDBObject document = new BasicDBObject();
-		final MongoCollection<Document> policyCollection = db.getCollection("bosun_definitions");
+		final MongoCollection<Document> policyCollection = db.getCollection("bosun_templates");
 		policyCollection.deleteMany(document);
-		final List<String> policyFiles = fileloadingService.loadFiles("bosun/002/bosun_policies/*.json");
+		final List<String> policyFiles = fileloadingService.loadFiles("bosun/002/bosun_templates/*.json");
 		for (final String fileContents : policyFiles) {
 			final Document doc = Document.parse(fileContents);
 			policyCollection.insertOne(doc);
