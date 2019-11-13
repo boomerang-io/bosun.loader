@@ -2,6 +2,7 @@
     "_id" : ObjectId("5cdd8425f6ea74a9bbaf2fe6"),
     "key" : "cve_safelist",
     "name" : "CVE Safe List",
+    "createdDate" : ISODate("2019-11-01T10:00:01.744Z"),
     "description" : "The Common Vulnerabilities & Exposures (CVE) are validated against JFrog Xray Security Issues. Artifact and Version are validated through regular expression.",
     "order" : "3",
     "config" : [ 
