@@ -21,8 +21,8 @@ public class MongockRunner {
             if (migrationTool == null) {
                 return;
             }
-            final Mongobee mongoBee = migrationTool.mongobee();
-            mongoBee.execute();
+            final Mongock mongock = migrationTool.mongock();
+            mongock.execute();
         } catch (final Exception e) {
             logger.error("Error running migration:", e);
             System.exit(1);
