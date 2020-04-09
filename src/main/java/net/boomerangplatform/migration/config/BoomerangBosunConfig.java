@@ -30,8 +30,8 @@ public class BoomerangBosunConfig implements BoomerangMigration {
 		
 		MongockBuilder mongockBuilder = new MongockBuilder(mongoclient, uri.getDatabase(),
 	        "net.boomerangplatform.migration.changesets.bosun");
-	    mongockBuilder.setChangeLogCollectionName("sys_changelog_ci");
-	    mongockBuilder.setLockCollectionName("sys_lock_ci");
+	    mongockBuilder.setChangeLogCollectionName("sys_changelog_bosun");
+	    mongockBuilder.setLockCollectionName("sys_lock_bosun");
 
 	    return mongockBuilder.setLockQuickConfig().build();
 	}
