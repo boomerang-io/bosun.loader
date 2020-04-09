@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import com.github.cloudyrock.mongock.Mongock;
-
+import com.github.cloudyrock.mongock.MongockBuilder;
+import com.mongodb.MongoClient;
+import com.mongodb.MongoClientURI;
 import net.boomerangplatform.migration.BoomerangMigration;
 
 @Configuration
@@ -23,11 +25,21 @@ public class BoomerangBosunConfig implements BoomerangMigration {
 
 		logger.info("Creating MongoDB Configuration for: Bosun");
 
-		final Mongock runner = new Mongock(mongodbUri);
-		runner.setChangelogCollectionName("sys_changelog_bosun");
-		runner.setLockCollectionName("sys_lock_bosun");
-		runner.setChangeLogsScanPackage("net.boomerangplatform.migration.changesets.bosun");
+//		final Mongock runner = new Mongock(mongodbUri);
+//		runner.setChangelogCollectionName("sys_changelog_bosun");
+//		runner.setLockCollectionName("sys_lock_bosun");
+//		runner.setChangeLogsScanPackage("net.boomerangplatform.migration.changesets.bosun");
+//
+//		return runner;
+		
+		MongoClientURI uri = new MongoClientURI(mongodbUri);
+	    MongoClient mongoclient = new MongoClient(uri);
+		
+		MongockBuilder mongockBuilder = new MongockBuilder(mongoclient, uri.getDatabase(),
+	        "net.boomerangplatform.migration.changesets.bosun");
+	    mongockBuilder.setChangeLogCollectionName("sys_changelog_ci");
+	    mongockBuilder.setLockCollectionName("sys_lock_ci");
 
-		return runner;
+	    return mongockBuilder.setLockQuickConfig().build();
 	}
 }
