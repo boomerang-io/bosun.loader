@@ -25,13 +25,6 @@ public class BoomerangBosunConfig implements BoomerangMigration {
 
 		logger.info("Creating MongoDB Configuration for: Bosun");
 
-//		final Mongock runner = new Mongock(mongodbUri);
-//		runner.setChangelogCollectionName("sys_changelog_bosun");
-//		runner.setLockCollectionName("sys_lock_bosun");
-//		runner.setChangeLogsScanPackage("net.boomerangplatform.migration.changesets.bosun");
-//
-//		return runner;
-		
 		MongoClientURI uri = new MongoClientURI(mongodbUri);
 	    MongoClient mongoclient = new MongoClient(uri);
 		
