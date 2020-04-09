@@ -5,8 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
-
-import com.github.mongobee.Mongobee;
+import com.github.cloudyrock.mongock.Mongock;
 
 import net.boomerangplatform.migration.BoomerangMigration;
 
@@ -20,11 +19,11 @@ public class BoomerangBosunConfig implements BoomerangMigration {
 	private String mongodbUri;
 
 	@Override
-	public Mongobee mongobee() {
+	public Mongock mongock() {
 
 		logger.info("Creating MongoDB Configuration for: Bosun");
 
-		final Mongobee runner = new Mongobee(mongodbUri);
+		final Mongock runner = new Mongock(mongodbUri);
 		runner.setChangelogCollectionName("sys_changelog_bosun");
 		runner.setLockCollectionName("sys_lock_bosun");
 		runner.setChangeLogsScanPackage("net.boomerangplatform.migration.changesets.bosun");

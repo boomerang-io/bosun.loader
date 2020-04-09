@@ -7,7 +7,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import net.boomerangplatform.migration.MongobeeRunner;
+import net.boomerangplatform.migration.MongockRunner;
 
 @SpringBootApplication
 public class Application implements CommandLineRunner {
@@ -19,7 +19,7 @@ public class Application implements CommandLineRunner {
     private final Logger logger = LoggerFactory.getLogger(Application.class);
 
     @Autowired
-    private MongobeeRunner runner;
+    private MongockRunner runner;
 
     @Override
     public void run(String... args) throws Exception {
