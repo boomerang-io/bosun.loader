@@ -1,7 +1,7 @@
 package net.boomerangplatform.migration;
 
-import com.github.mongobee.Mongobee;
+import com.github.cloudyrock.mongock.Mongock;
 
 public interface BoomerangMigration {
-    public Mongobee mongobee();
+  public Mongock mongock();
 }

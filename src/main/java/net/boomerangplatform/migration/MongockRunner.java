@@ -5,12 +5,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.github.mongobee.Mongobee;
+import com.github.cloudyrock.mongock.Mongock;
 
 @Component
-public class MongobeeRunner {
+public class MongockRunner {
 
-    private final Logger logger = LoggerFactory.getLogger(MongobeeRunner.class);
+    private final Logger logger = LoggerFactory.getLogger(MongockRunner.class);
 
     @Autowired(required = false)
     private BoomerangMigration migrationTool;
@@ -21,8 +21,8 @@ public class MongobeeRunner {
             if (migrationTool == null) {
                 return;
             }
-            final Mongobee mongoBee = migrationTool.mongobee();
-            mongoBee.execute();
+            final Mongock mongock = migrationTool.mongock();
+            mongock.execute();
         } catch (final Exception e) {
             logger.error("Error running migration:", e);
             System.exit(1);
