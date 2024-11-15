@@ -9,22 +9,26 @@ import org.springframework.stereotype.Component;
 @Component
 public class SpringContextBridge implements SpringContextBridgedServices, ApplicationContextAware {
 
-    private static ApplicationContext applicationContext;
+	private static ApplicationContext applicationContext;
 
-    public static SpringContextBridgedServices services() {
-        return applicationContext.getBean(SpringContextBridgedServices.class);
-    }
+  public static SpringContextBridgedServices services() {
+      return applicationContext.getBean(SpringContextBridgedServices.class);
+  }
 
-    @Autowired
-    private FileLoadingService fileLoadingService;
+  @Autowired
+  private FileLoadingService fileLoadingService;
 
-    @Override
-    public FileLoadingService getFileLoadingService() {
-        return this.fileLoadingService;
-    }
+  @Override
+  public FileLoadingService getFileLoadingService() {
+      return this.fileLoadingService;
+  }
 
-    @Override
-    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        this.applicationContext = applicationContext;
-    }
+  @Override
+  public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+     setContext(applicationContext);
+  }
+    
+  private static synchronized void setContext(ApplicationContext context) {
+  	SpringContextBridge.applicationContext = context;
+  } 
 }
