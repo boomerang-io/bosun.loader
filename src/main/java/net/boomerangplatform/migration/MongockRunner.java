@@ -5,8 +5,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.github.cloudyrock.mongock.Mongock;
-
 @Component
 public class MongockRunner {
 
@@ -21,7 +19,7 @@ public class MongockRunner {
             if (migrationTool == null) {
                 return;
             }
-            final Mongock mongock = migrationTool.mongock();
+            final io.mongock.runner.core.executor.MongockRunner mongock = migrationTool.mongock();
             mongock.execute();
         } catch (final Exception e) {
             logger.error("Error running migration:", e);

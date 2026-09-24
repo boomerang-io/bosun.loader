@@ -5,10 +5,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
-import com.github.cloudyrock.mongock.Mongock;
-import com.github.cloudyrock.mongock.MongockBuilder;
-import com.mongodb.MongoClient;
-import com.mongodb.MongoClientURI;
+import com.mongodb.client.MongoClient;
+import com.mongodb.client.MongoClients;
+import com.mongodb.ConnectionString;
+import io.mongock.driver.mongodb.sync.v4.driver.MongoSync4Driver;
+import io.mongock.runner.core.executor.MongockRunner;
+import io.mongock.runner.springboot.MongockSpringboot;
 import net.boomerangplatform.migration.BoomerangMigration;
 
 @Configuration
@@ -21,18 +23,16 @@ public class BoomerangBosunConfig implements BoomerangMigration {
 	private String mongodbUri;
 
 	@Override
-	public Mongock mongock() {
+	public MongockRunner mongock() {
 
 		logger.info("Creating MongoDB Configuration for: Bosun");
 
-		MongoClientURI uri = new MongoClientURI(mongodbUri);
-	    MongoClient mongoclient = new MongoClient(uri);
-		
-		MongockBuilder mongockBuilder = new MongockBuilder(mongoclient, uri.getDatabase(),
-	        "net.boomerangplatform.migration.changesets.bosun");
-	    mongockBuilder.setChangeLogCollectionName("sys_changelog_bosun");
-	    mongockBuilder.setLockCollectionName("sys_lock_bosun");
+		ConnectionString connectionString = new ConnectionString(mongodbUri);
+		MongoClient mongoClient = MongoClients.create(connectionString);
 
-	    return mongockBuilder.setLockQuickConfig().build();
+		return MongockSpringboot.builder()
+				.setDriver(MongoSync4Driver.withDefaultLock(mongoClient, connectionString.getDatabase()))
+				.addChangeLogsScanPackage("net.boomerangplatform.migration.changesets.bosun")
+				.buildRunner();
 	}
 }
