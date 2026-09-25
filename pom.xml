@@ -3,7 +3,7 @@
 
 	<groupId>net.boomerangplatform</groupId>
 	<artifactId>bosun-loader</artifactId>
-	<version>${version.name}</version>
+	<version>1.0.0</version>
 	<packaging>jar</packaging>
 	<name>bosun-loader</name>
 	<url>http://maven.apache.org</url>
