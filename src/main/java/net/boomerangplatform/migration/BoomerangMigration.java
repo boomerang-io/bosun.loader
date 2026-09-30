@@ -1,7 +1,7 @@
 package net.boomerangplatform.migration;
 
-import com.github.cloudyrock.mongock.Mongock;
+import io.mongock.runner.core.executor.MongockRunner;
 
 public interface BoomerangMigration {
-  public Mongock mongock();
+  public MongockRunner mongock();
 }
